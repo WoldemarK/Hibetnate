@@ -27,21 +27,9 @@ public class Department {
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH,
             CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "department")
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "department_id")
     private List<Employee> employeeList;
-
-    /**
-     * Если такого сотрудника нет то создать его
-     * Уточнить так делать можно или логику перенести в Сервис
-     *
-     * @param employee
-     */
-    public void addEmployeeDepartment(Employee employee) {
-        if (employeeList == null) {
-            employeeList = new ArrayList<>();
-        }
-        employeeList.add(employee);
-        employee.setDepartment(this);
-    }
 
     public Department(String departmentName, Long maxSalary, Long minSalary) {
         this.departmentName = departmentName;
